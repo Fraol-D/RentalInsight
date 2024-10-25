@@ -1,17 +1,17 @@
 :root {
   --primary-color: #3498db;
-  --secondary-color: #2c3e50;
-  --background-color: #ecf0f1;
-  --text-color: #34495e;
+  --secondary-color: #34495e;
+  --background-color: #f9f9f9;
+  --text-color: #333333;
   --accent-color: #e74c3c;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
+  margin: 0;
+  padding: 0;
 }
 
 .container {

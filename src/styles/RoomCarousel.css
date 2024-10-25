@@ -3,7 +3,6 @@
 }
 
 .room-carousel h2 {
-  font-size: 1.5rem;
   color: var(--secondary-color);
   margin-bottom: 15px;
 }
@@ -35,19 +34,27 @@
 }
 
 .room-info h3 {
-  font-size: 1.2rem;
   color: var(--secondary-color);
   margin-bottom: 10px;
 }
 
 .room-info p {
+  color: var(--text-color);
   margin: 5px 0;
 }
 
 .room-card button {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.room-card button:hover {
+  background-color: var(--secondary-color);
 }
 
 .carousel-nav {

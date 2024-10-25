@@ -7,12 +7,10 @@
 }
 
 .property-info h1 {
-  font-size: 2rem;
   color: var(--secondary-color);
   margin-bottom: 10px;
 }
 
 .property-info p {
-  font-size: 1rem;
-  line-height: 1.5;
+  color: var(--text-color);
 }

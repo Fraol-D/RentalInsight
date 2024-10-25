@@ -7,14 +7,13 @@
 }
 
 .location-map h2 {
-  font-size: 1.5rem;
   color: var(--secondary-color);
   margin-bottom: 15px;
 }
 
 .map-placeholder {
   height: 300px;
-  background-color: #f0f0f0;
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +26,10 @@
 }
 
 .location-description h3 {
-  font-size: 1.2rem;
   color: var(--secondary-color);
   margin-bottom: 10px;
+}
+
+.location-description p {
+  color: var(--text-color);
 }

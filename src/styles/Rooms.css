@@ -1,0 +1,217 @@
+.rooms-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.content-wrapper.filters-visible .rooms-list {
+  width: calc(100% - 320px);
+}
+
+.rooms-list {
+  width: 100%;
+  transition: width 0.3s ease-in-out;
+}
+
+h1 {
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.filter-section {
+  width: 300px;
+  position: fixed;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 20px;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  overflow-y: auto;
+}
+
+.filter-section.show {
+  transform: translateX(0);
+}
+
+.filter-toggle {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  z-index: 1000;
+  transition: right 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.filters-visible .filter-toggle {
+  right: 320px;
+}
+
+.filter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-section input,
+.filter-section select,
+.filter-section .basic-multi-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  background-color: white;
+  color: var(--text-color);
+}
+
+.filter-section input::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.clear-filters {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.room-card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.room-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.room-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.room-info {
+  padding: 15px;
+}
+
+.room-info h2 {
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+}
+
+.room-info p {
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.room-card button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.room-card button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Styles for react-select */
+.basic-multi-select .select__control {
+  background-color: white;
+  border-color: var(--secondary-color);
+}
+
+.basic-multi-select .select__menu {
+  background-color: white;
+}
+
+.basic-multi-select .select__option {
+  background-color: white;
+  color: var(--text-color);
+}
+
+.basic-multi-select .select__option--is-focused {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.basic-multi-select .select__multi-value {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.basic-multi-select .select__multi-value__label {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper,
+  .content-wrapper.filters-visible .rooms-list {
+    width: 100%;
+  }
+
+  .filter-section {
+    width: 100%;
+    position: static;
+    margin-top: 20px;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .filter-toggle {
+    position: static;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .filters-visible .filter-toggle {
+    right: auto;
+  }
+
+  .filter-section.show {
+    transform: none;
+  }
+}
+
