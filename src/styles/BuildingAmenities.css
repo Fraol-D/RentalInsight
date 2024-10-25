@@ -1,0 +1,33 @@
+.building-amenities {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.building-amenities h2 {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+}
+
+.building-amenities ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.building-amenities li {
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.building-amenities li::before {
+  content: '•';
+  color: var(--primary-color);
+  font-size: 1.5em;
+  position: absolute;
+  left: 0;
+  top: -5px;
+}
