@@ -2,34 +2,41 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import '../styles/RoomCarousel.css';
 
-const RoomCarousel = ({ rooms }) => {
+const RoomCarousel = ({ images, rooms, title }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const items = images || rooms;
 
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % rooms.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + rooms.length) % rooms.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + items.length) % items.length);
   };
 
   return (
     <section className="room-carousel">
-      <h2>Available Rooms</h2>
+      <h2>{title}</h2>
       <div className="carousel-container">
-        {rooms.map((room) => (
+        {items.map((item, index) => (
           <div
-            key={room.id}
-            className="room-card"
-            style={{ transform: `translateX(-${currentIndex * 320}px)` }}
+            key={index}
+            className={`carousel-item ${images ? 'image-only' : 'room-card'}`}
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            <img src={room.image} alt={room.name} />
-            <div className="room-info">
-              <h3>{room.name}</h3>
-              <p>Floor: {room.floor}</p>
-              <p>Size: {room.size} sqft</p>
-              <button>View details</button>
-            </div>
+            {images ? (
+              <img src={item} alt={`Room view ${index + 1}`} />
+            ) : (
+              <>
+                <img src={item.image} alt={item.name} />
+                <div className="room-info">
+                  <h3>{item.name}</h3>
+                  <p>Floor: {item.floor}</p>
+                  <p>Size: {item.size} sqft</p>
+                  <button>View details</button>
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>
@@ -42,6 +49,7 @@ const RoomCarousel = ({ rooms }) => {
 };
 
 RoomCarousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string),
   rooms: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -50,7 +58,8 @@ RoomCarousel.propTypes = {
       size: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
+  title: PropTypes.string.isRequired,
 };
 
 export default RoomCarousel;

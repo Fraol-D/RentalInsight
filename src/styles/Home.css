@@ -8,5 +8,28 @@
   flex: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 20px;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.amenities-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.location-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.location-description {
+  flex: 1;
+  margin-left: 20px;
 }

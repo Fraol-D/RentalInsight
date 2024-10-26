@@ -1,0 +1,13 @@
+.general-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 48%;
+}
+
+.general-images img {
+  width: calc(33.33% - 7px);
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}

@@ -1,9 +1,15 @@
 .location-map {
+  display: flex;
+  justify-content: space-between;
   background-color: white;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+}
+
+.map-container {
+  width: 60%;
 }
 
 .location-map h2 {
@@ -18,11 +24,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  margin-bottom: 15px;
 }
 
 .location-description {
-  margin-top: 1rem;
+  width: 35%;
 }
 
 .location-description h3 {
