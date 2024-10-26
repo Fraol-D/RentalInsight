@@ -3,6 +3,7 @@ import Select from 'react-select';
 import RoomDetails from '../components/RoomDetails';
 import '../styles/Rooms.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { FaFilter, FaTimes } from 'react-icons/fa';
 
 // Import images
@@ -259,6 +260,7 @@ const Rooms = () => {
         </div>
         <RoomDetails room={selectedRoom} onClose={handleCloseDetails} />
       </div>
+      <Footer />
     </>
   );
 };

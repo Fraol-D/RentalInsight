@@ -1,5 +1,6 @@
 import '../styles/Contact.css';
 import Header from '../components/Header';
+import Footer from '../components/Footer';  // Add this import
 
 const Contact = () => {
   return (
@@ -42,6 +43,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <Footer />  {/* Add this line */}
     </>
   );
 };
