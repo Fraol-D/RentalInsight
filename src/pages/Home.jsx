@@ -8,10 +8,15 @@ import LocationMap from '../components/LocationMap';
 import Footer from '../components/Footer';
 import '../styles/Home.css';
 
+// Import building images
+import building1 from '../assets/images/room1.jpg';
+import building2 from '../assets/images/room2.jpg';
+import building3 from '../assets/images/room6.jpg';
+
 const Home = () => {
   const propertyName = "Property Name";
   const propertyDescription = "This property is the best ever property";
-  const buildingImages = ["/building1.jpg", "/building2.jpg", "/building3.jpg"];
+  const buildingImages = [building1, building2, building3];
   const roomImages = ["/room1.jpg", "/room2.jpg", "/room3.jpg", "/room4.jpg", "/room5.jpg"];
   const rooms = [
     { id: 1, name: "Delux Family Room", floor: 5, size: 33.5, image: "/room1.jpg" },
@@ -32,18 +37,14 @@ const Home = () => {
           <PropertyInfo name={propertyName} description={propertyDescription} />
           <BuildingImages images={buildingImages} />
         </div>
-        <RoomCarousel images={roomImages} title="Room Images" />
-        <RoomCarousel rooms={rooms} title="Available Rooms" />
+        <RoomCarousel title="Room Images" images={roomImages} isRoomCarousel={false} />
+        <RoomCarousel title="Available Rooms" rooms={rooms} isRoomCarousel={true} />
         <div className="amenities-section">
           <BuildingAmenities amenities={amenities} />
           <GeneralImages images={generalImages} />
         </div>
         <div className="location-section">
-          <LocationMap />
-          <div className="location-description">
-            <h3>Location</h3>
-            <p>{locationDescription}</p>
-          </div>
+          <LocationMap description={locationDescription} />
         </div>
       </main>
       <Footer />
