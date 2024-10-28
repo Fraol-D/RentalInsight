@@ -1,13 +1,34 @@
 .general-images {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
   width: 48%;
+  height: 400px;
 }
 
-.general-images img {
-  width: calc(33.33% - 7px);
-  height: 100px;
+.left-images {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.left-images img {
+  width: 100%;
+  height: calc((100% - 10px) / 2);
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.right-images {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.right-images img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 5px;
 }

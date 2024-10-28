@@ -4,9 +4,13 @@ import '../styles/BuildingImages.css';
 const BuildingImages = ({ images }) => {
   return (
     <div className="building-images">
-      {images.map((image, index) => (
-        <img key={index} src={image} alt={`Building view ${index + 1}`} />
-      ))}
+      <div className="main-image">
+        <img src={images[0]} alt="Main building view" />
+      </div>
+      <div className="side-images">
+        <img src={images[1]} alt="Building view 2" />
+        <img src={images[2]} alt="Building view 3" />
+      </div>
     </div>
   );
 };

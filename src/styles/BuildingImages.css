@@ -1,12 +1,33 @@
 .building-images {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   width: 50%;
+  height: 300px; /* Set a fixed container height */
 }
 
-.building-images img {
-  width: 32%;
-  height: 150px;
+.main-image {
+  flex: 2;
+  height: 100%; /* Take full height of container */
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.side-images {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%; /* Take full height of container */
+}
+
+.side-images img {
+  width: 100%;
+  height: calc((100% - 10px) / 2); /* Subtract the gap and divide by 2 */
   object-fit: cover;
   border-radius: 5px;
 }

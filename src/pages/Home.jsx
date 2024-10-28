@@ -8,25 +8,39 @@ import LocationMap from '../components/LocationMap';
 import Footer from '../components/Footer';
 import '../styles/Home.css';
 
-// Import building images
-import building1 from '../assets/images/room1.jpg';
-import building2 from '../assets/images/room2.jpg';
-import building3 from '../assets/images/room6.jpg';
+// Import all images
+import room1 from '../assets/images/room1.jpg';
+import room2 from '../assets/images/room2.jpg';
+import room3 from '../assets/images/room6.jpg';
+import room4 from '../assets/images/room4.jpg';
+import room5 from '../assets/images/room5.jpg';
+import room6 from '../assets/images/room6.jpg';
+import room7 from '../assets/images/room7.jpg';
 
 const Home = () => {
   const propertyName = "Property Name";
   const propertyDescription = "This property is the best ever property";
-  const buildingImages = [building1, building2, building3];
-  const roomImages = ["/room1.jpg", "/room2.jpg", "/room3.jpg", "/room4.jpg", "/room5.jpg"];
+  
+  // Building images at the top
+  const buildingImages = [room1, room2, room3];
+  
+  // Room carousel images
+  const roomImages = [room1, room2, room3, room4, room5];
+  
+  // Available rooms carousel
   const rooms = [
-    { id: 1, name: "Delux Family Room", floor: 5, size: 33.5, image: "/room1.jpg" },
-    { id: 2, name: "Standard Double Room", floor: 3, size: 28.0, image: "/room2.jpg" },
-    { id: 3, name: "Suite", floor: 6, size: 45.0, image: "/room3.jpg" },
+    { id: 1, name: "Delux Family Room", floor: 5, size: 33.5, image: room1 },
+    { id: 2, name: "Standard Double Room", floor: 3, size: 28.0, image: room2 },
+    { id: 3, name: "Suite", floor: 6, size: 45.0, image: room3 },
   ];
+  
   const amenities = [
     "Elevator", "Parking", "5 public bathrooms", "Free cleaning", "24/7 Security", "Fitness Center",
   ];
-  const generalImages = ["/parking.jpg", "/lobby.jpg", "/gym.jpg"];
+  
+  // General images section
+  const generalImages = [room4, room5, room6, room7];
+  
   const locationDescription = "Our building is located in the heart of the city, close to public transportation and major attractions.";
 
   return (
