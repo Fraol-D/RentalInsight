@@ -24,14 +24,21 @@ const Home = () => {
   // Building images at the top
   const buildingImages = [room1, room2, room3];
   
-  // Room carousel images
-  const roomImages = [room1, room2, room3, room4, room5];
+  // Room carousel images - expanded
+  const roomImages = [room1, room2, room3, room4, room5, room6, room7, room1, room2, room3];
   
-  // Available rooms carousel
+  // Available rooms carousel - expanded with more rooms
   const rooms = [
     { id: 1, name: "Delux Family Room", floor: 5, size: 33.5, image: room1 },
     { id: 2, name: "Standard Double Room", floor: 3, size: 28.0, image: room2 },
     { id: 3, name: "Suite", floor: 6, size: 45.0, image: room3 },
+    { id: 4, name: "Premium Suite", floor: 7, size: 50.0, image: room4 },
+    { id: 5, name: "Single Room", floor: 2, size: 20.0, image: room5 },
+    { id: 6, name: "Twin Room", floor: 4, size: 30.0, image: room6 },
+    { id: 7, name: "Executive Suite", floor: 8, size: 55.0, image: room7 },
+    { id: 8, name: "Family Room", floor: 5, size: 40.0, image: room1 },
+    { id: 9, name: "Delux Suite", floor: 6, size: 48.0, image: room2 },
+    { id: 10, name: "Standard Single", floor: 3, size: 22.0, image: room3 },
   ];
   
   const amenities = [
