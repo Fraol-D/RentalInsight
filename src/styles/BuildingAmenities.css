@@ -4,6 +4,8 @@
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  flex: 1;
+  min-width: 0;
 }
 
 .building-amenities h2 {
@@ -14,13 +16,17 @@
 .building-amenities ul {
   list-style-type: none;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
 }
 
 .building-amenities li {
   color: var(--text-color);
-  margin-bottom: 10px;
   padding-left: 25px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .building-amenities li::before {
@@ -29,5 +35,4 @@
   font-size: 1.5em;
   position: absolute;
   left: 0;
-  top: -5px;
 }
