@@ -4,6 +4,11 @@
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  flex: 1;
+  min-width: 0;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .property-info h1 {
@@ -13,4 +18,25 @@
 
 .property-info p {
   color: var(--text-color);
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.property-info p::-webkit-scrollbar {
+  width: 8px;
+}
+
+.property-info p::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.property-info p::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.property-info p::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

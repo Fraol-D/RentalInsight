@@ -14,8 +14,34 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
     container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
   };
 
-  const handleRoomClick = (room) => {
-    setSelectedRoom(room);
+  const handleImageClick = (item) => {
+    if (isRoomCarousel) {
+      // For available rooms carousel
+      setSelectedRoom({
+        ...item,
+        images: [item.image],
+        price: 1000,
+        squareMeters: item.size,
+        specifications: [`Floor: ${item.floor}`, `Size: ${item.size}m²`],
+        location: "Property Location",
+        preferredPaymentCycle: "Monthly",
+        adjustablePaymentCycle: true,
+        dueDate: "1st of every month"
+      });
+    } else {
+      // For room images carousel
+      setSelectedRoom({
+        name: `Room View ${items.indexOf(item) + 1}`,
+        images: [item],
+        price: 0,
+        squareMeters: 0,
+        specifications: [],
+        location: "Property Location",
+        preferredPaymentCycle: "Monthly",
+        adjustablePaymentCycle: true,
+        dueDate: "1st of every month"
+      });
+    }
   };
 
   const handleCloseDetails = () => {
@@ -49,7 +75,7 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
               src={isRoomCarousel ? item.image : item}
               alt={isRoomCarousel ? item.name : `Room view ${index + 1}`}
               className={`row__poster ${!isRoomCarousel && "row__posterLarge"}`}
-              onClick={() => isRoomCarousel && handleRoomClick(item)}
+              onClick={() => handleImageClick(item)}
             />
           ))}
         </div>

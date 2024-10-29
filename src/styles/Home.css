@@ -6,15 +6,18 @@
 
 .main-content {
   flex: 1;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .top-section {
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
   margin-bottom: 20px;
+  width: 100%;
+  padding: 0 20px;
 }
 
 .amenities-section {
@@ -22,6 +25,7 @@
   gap: 20px;
   margin-bottom: 20px;
   width: 100%;
+  padding: 0 20px;
 }
 
 .location-section {
@@ -33,4 +37,33 @@
 .location-description {
   flex: 1;
   margin-left: 20px;
+}
+
+/* Media Queries */
+@media screen and (min-width: 1920px) {
+  .main-content {
+    max-width: 1800px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main-content {
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .top-section,
+  .amenities-section {
+    flex-direction: column;
+  }
+
+  .row--small {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
 }
