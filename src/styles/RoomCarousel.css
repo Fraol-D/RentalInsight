@@ -9,6 +9,87 @@
 .row--small {
   width: 60%;
   margin-left: 20px;
+  position: relative;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.row--small .carousel-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.row--small .row__posters--small {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row--small .row__posterLarge {
+  position: absolute;
+  height: 200px;
+  width: 160px;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.row--small .row__posterLarge.active {
+  transform: translateX(0) scale(1.2);
+  z-index: 3;
+  opacity: 1;
+}
+
+.row--small .row__posterLarge.prev {
+  transform: translateX(-180px);
+  z-index: 2;
+  opacity: 0.7;
+}
+
+.row--small .row__posterLarge.next {
+  transform: translateX(180px);
+  z-index: 2;
+  opacity: 0.7;
+}
+
+.row--small .row__posterLarge.hidden {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.row--small .scroll-buttons {
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.row--small .scroll-button {
+  width: 40px;
+  height: 40px;
+  pointer-events: auto;
+  z-index: 4;
+}
+
+.row--small .scroll-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.row--small .scroll-icon {
+  color: white;
+  font-size: 20px;
 }
 
 .row h2 {
@@ -16,53 +97,6 @@
   font-size: 1.5rem;
   text-align: left;
   padding-left: 20px;
-}
-
-.carousel-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.scroll-buttons {
-  position: absolute;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.scroll-button {
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  width: 40px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: background-color 0.3s ease;
-}
-
-.scroll-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.scroll-icon {
-  color: white;
-  font-size: 24px;
-}
-
-.scroll-button.left {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.scroll-button.right {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
 }
 
 .row__posters {

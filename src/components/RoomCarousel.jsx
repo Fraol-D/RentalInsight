@@ -5,13 +5,34 @@ import RoomDetails from './RoomDetails';
 import '../styles/RoomCarousel.css';
 
 const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const items = images || rooms;
 
   const handleScroll = (direction) => {
-    const container = document.querySelector(`.row__posters${!isRoomCarousel ? '--small' : ''}`);
-    const scrollAmount = direction === 'left' ? -200 : 200;
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    if (!isRoomCarousel) {
+      setCurrentIndex(prevIndex => {
+        if (direction === 'left') {
+          return prevIndex === 0 ? items.length - 1 : prevIndex - 1;
+        } else {
+          return prevIndex === items.length - 1 ? 0 : prevIndex + 1;
+        }
+      });
+    } else {
+      const container = document.querySelector('.row__posters');
+      const scrollAmount = direction === 'left' ? -200 : 200;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  const getImageClass = (index) => {
+    if (!isRoomCarousel) {
+      if (index === currentIndex) return 'row__posterLarge active';
+      if (index === (currentIndex - 1 + items.length) % items.length) return 'row__posterLarge prev';
+      if (index === (currentIndex + 1) % items.length) return 'row__posterLarge next';
+      return 'row__posterLarge hidden';
+    }
+    return 'row__poster';
   };
 
   const handleImageClick = (item) => {
@@ -74,7 +95,7 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
               key={index}
               src={isRoomCarousel ? item.image : item}
               alt={isRoomCarousel ? item.name : `Room view ${index + 1}`}
-              className={`row__poster ${!isRoomCarousel && "row__posterLarge"}`}
+              className={getImageClass(index)}
               onClick={() => handleImageClick(item)}
             />
           ))}
