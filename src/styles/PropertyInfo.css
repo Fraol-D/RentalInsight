@@ -6,7 +6,7 @@
   margin-bottom: 20px;
   flex: 1;
   min-width: 0;
-  height: 300px;
+  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -39,4 +39,17 @@
 
 .property-info p::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Add media queries */
+@media screen and (min-width: 1920px) {
+  .property-info {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .property-info {
+    height: 350px;
+  }
 }

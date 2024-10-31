@@ -69,6 +69,34 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
     setSelectedRoom(null);
   };
 
+  const renderRoomCard = (room) => {
+    return (
+      <div className="room-card" onClick={() => handleImageClick(room)}>
+        <div className="room-card__image-container">
+          <img 
+            src={room.image} 
+            alt={room.name} 
+            className="room-card__image"
+          />
+        </div>
+        <div className="room-card__content">
+          <h3 className="room-card__title">{room.name}</h3>
+          <div className="room-card__details">
+            <p>Floor: {room.floor}</p>
+            <p>Size: {room.size}m²</p>
+            <p>Room: 5</p>
+          </div>
+          <div className="room-card__bottom">
+            <div className="room-card__price">
+              {room.price} Birr/monthly
+            </div>
+            <button className="view-details-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={`row ${!isRoomCarousel ? 'row--small' : ''}`}>
       <h2>{title}</h2>
@@ -91,13 +119,17 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
         )}
         <div className={`row__posters ${!isRoomCarousel ? 'row__posters--small' : ''}`}>
           {items.map((item, index) => (
-            <img
-              key={index}
-              src={isRoomCarousel ? item.image : item}
-              alt={isRoomCarousel ? item.name : `Room view ${index + 1}`}
-              className={getImageClass(index)}
-              onClick={() => handleImageClick(item)}
-            />
+            isRoomCarousel ? (
+              renderRoomCard(item)
+            ) : (
+              <img
+                key={index}
+                src={item}
+                alt={`Room view ${index + 1}`}
+                className={getImageClass(index)}
+                onClick={() => handleImageClick(item)}
+              />
+            )
           ))}
         </div>
       </div>

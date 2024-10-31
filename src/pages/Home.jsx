@@ -24,8 +24,8 @@ const Home = () => {
   // Building images at the top
   const buildingImages = [room1, room2, room3];
   
-  // Room carousel images - expanded
-  const roomImages = [room1, room2, room3, room4, room5, room6, room7, room1, room2, room3];
+  // Room carousel images - updated to show only 3 at a time
+  const roomImages = [room1, room2, room3, room4, room5, room6];
   
   // Available rooms carousel - expanded with more rooms
   const rooms = [

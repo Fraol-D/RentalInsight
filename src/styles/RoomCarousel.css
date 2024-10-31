@@ -1,27 +1,31 @@
 .row {
   margin-left: 0;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: var(--secondary-color);
-  padding: 0 20px;
   width: 100%;
 }
 
+.row h2 {
+  text-align: left;
+  margin-left: 0;
+  margin-bottom: 15px;
+}
+
+/* Room Images Carousel (Small) */
 .row--small {
-  width: 60%;
-  margin-left: 20px;
+  width: 50%;
+  margin-left: 0;
   position: relative;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
+  height: 250px;
+  margin-bottom: 50px;
 }
 
 .row--small .carousel-container {
-  flex: 1;
   position: relative;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
 .row--small .row__posters--small {
@@ -31,33 +35,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .row--small .row__posterLarge {
   position: absolute;
-  height: 200px;
-  width: 160px;
-  transition: all 0.3s ease;
   border-radius: 4px;
   object-fit: cover;
+  transition: all 0.3s ease;
 }
 
 .row--small .row__posterLarge.active {
-  transform: translateX(0) scale(1.2);
+  height: 220px;
+  width: 320px;
+  transform: translateX(0);
   z-index: 3;
   opacity: 1;
 }
 
-.row--small .row__posterLarge.prev {
-  transform: translateX(-180px);
-  z-index: 2;
+.row--small .row__posterLarge.prev,
+.row--small .row__posterLarge.next {
+  height: 160px;
+  width: 240px;
   opacity: 0.7;
+  z-index: 2;
+}
+
+.row--small .row__posterLarge.prev {
+  transform: translateX(-260px);
 }
 
 .row--small .row__posterLarge.next {
-  transform: translateX(180px);
-  z-index: 2;
-  opacity: 0.7;
+  transform: translateX(260px);
 }
 
 .row--small .row__posterLarge.hidden {
@@ -66,83 +75,157 @@
   z-index: 1;
 }
 
+/* Scroll Buttons */
 .row--small .scroll-buttons {
   position: absolute;
   width: 100%;
-  padding: 0 20px;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  pointer-events: none;
+  z-index: 4;
+  padding: 0 10px;
 }
 
 .row--small .scroll-button {
-  width: 40px;
-  height: 40px;
-  pointer-events: auto;
-  z-index: 4;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  padding: 0;
 }
 
 .row--small .scroll-button:hover {
-  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.2);
 }
 
 .row--small .scroll-icon {
-  color: white;
-  font-size: 20px;
+  color: var(--secondary-color);
+  font-size: 24px;
 }
 
-.row h2 {
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-  text-align: left;
-  padding-left: 20px;
+/* Optional: Add these styles if you want to adjust the position of the buttons */
+.row--small .scroll-button.left {
+  margin-left: -5px;
 }
 
+.row--small .scroll-button.right {
+  margin-right: -5px;
+}
+
+/* Available Rooms Carousel */
 .row__posters {
   display: flex;
-  overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
+  gap: 30px;
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-.row__posters--small {
-  padding: 20px 40px;
+  min-height: 200px;
 }
 
 .row__posters::-webkit-scrollbar {
   display: none;
 }
 
-.row__poster {
-  width: 166px;
-  object-fit: contain;
-  max-height: 100px;
-  transition: transform 450ms;
-  margin-right: 8px;
-  cursor: pointer;
+/* Room Card */
+.room-card {
+  display: flex;
+  width: 550px;
+  height: 180px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
 }
 
-.row__poster:hover {
-  transform: scale(1.08);
+.room-card__image-container {
+  width: 180px;
+  min-width: 180px;
+  height: 180px;
+  overflow: hidden;
 }
 
-.row__posterLarge {
-  width: 200px;
-  max-height: 250px;
+.room-card__content {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.row__posterLarge:hover {
-  transform: scale(1.09);
+.room-card__title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+.room-card__details {
+  flex-grow: 1;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.room-card__details p {
+  margin: 3px 0;
+  line-height: 1.3;
+}
+
+.room-card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.room-card__price {
+  font-weight: bold;
+  color: var(--secondary-color);
+  font-size: 1rem;
+}
+
+.view-details-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 /* Media Queries */
 @media screen and (min-width: 1920px) {
-  .row__poster {
+  .room-card {
+    width: 600px;
+    height: 200px;
+  }
+  
+  .room-card__image-container {
     width: 200px;
-    max-height: 120px;
+    min-width: 200px;
+    height: 200px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .room-card {
+    width: 500px;
+    height: 160px;
+  }
+  
+  .room-card__image-container {
+    width: 160px;
+    min-width: 160px;
+    height: 160px;
   }
 }

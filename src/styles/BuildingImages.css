@@ -2,7 +2,7 @@
   display: flex;
   gap: 10px;
   width: 50%;
-  height: 300px; /* Set a fixed container height */
+  height: 400px; /* Increased from 300px */
 }
 
 .main-image {
@@ -30,4 +30,17 @@
   height: calc((100% - 10px) / 2); /* Subtract the gap and divide by 2 */
   object-fit: cover;
   border-radius: 5px;
+}
+
+/* Add media queries */
+@media screen and (min-width: 1920px) {
+  .building-images {
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .building-images {
+    height: 350px;
+  }
 }
