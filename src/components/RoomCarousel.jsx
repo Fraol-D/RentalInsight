@@ -71,23 +71,23 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
 
   const renderRoomCard = (room) => {
     return (
-      <div className="room-card" onClick={() => handleImageClick(room)}>
-        <div className="room-card__image-container">
+      <div className="carousel-room-card" onClick={() => handleImageClick(room)}>
+        <div className="carousel-room-card__image-container">
           <img 
             src={room.image} 
             alt={room.name} 
-            className="room-card__image"
+            className="carousel-room-card__image"
           />
         </div>
-        <div className="room-card__content">
-          <h3 className="room-card__title">{room.name}</h3>
-          <div className="room-card__details">
+        <div className="carousel-room-card__content">
+          <h3 className="carousel-room-card__title">{room.name}</h3>
+          <div className="carousel-room-card__details">
             <p>Floor: {room.floor}</p>
             <p>Size: {room.size}m²</p>
             <p>Room: 5</p>
           </div>
-          <div className="room-card__bottom">
-            <div className="room-card__price">
+          <div className="carousel-room-card__bottom">
+            <div className="carousel-room-card__price">
               {room.price} Birr/monthly
             </div>
             <button className="view-details-btn">View Details</button>

@@ -170,7 +170,7 @@ const Rooms = () => {
   };
 
   return (
-    <>
+    <div>
       <Header userName="User" />
       <div className="rooms-container">
         <div
@@ -261,7 +261,7 @@ const Rooms = () => {
         <RoomDetails room={selectedRoom} onClose={handleCloseDetails} />
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
