@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import RoomDetails from './RoomDetails';
 import '../styles/RoomCarousel.css';
@@ -8,6 +8,86 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedRoom, setSelectedRoom] = useState(null);
   const items = images || rooms;
+  const [isHovered, setIsHovered] = useState(false);
+  const carouselRef = useRef(null);
+
+  const renderRoomCard = (room, index) => {
+    return (
+      <div key={`${room.id}-${index}`} className="carousel-room-card" onClick={() => handleImageClick(room)}>
+        <div className="carousel-room-card__image-container">
+          <img 
+            src={room.image} 
+            alt={room.name} 
+            className="carousel-room-card__image"
+          />
+        </div>
+        <div className="carousel-room-card__content">
+          <h3 className="carousel-room-card__title">{room.name}</h3>
+          <div className="carousel-room-card__details">
+            <p>Floor: {room.floor}</p>
+            <p>Size: {room.size}m²</p>
+            <p>Room: 5</p>
+          </div>
+          <div className="carousel-room-card__bottom">
+            <div className="carousel-room-card__price">
+              {room.price} Birr/monthly
+            </div>
+            <button className="view-details-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderCarouselContent = () => {
+    if (!isRoomCarousel) {
+      return items.map((item, index) => (
+        <img
+          key={index}
+          src={item}
+          alt={`Room view ${index + 1}`}
+          className={getImageClass(index)}
+          onClick={() => handleImageClick(item)}
+        />
+      ));
+    }
+
+    // For the room carousel, create a seamless loop by duplicating first few items
+    return (
+      <>
+        {items.map((item, index) => renderRoomCard(item, index))}
+        {/* Clone first few items and append them to the end */}
+        {items.slice(0, 3).map((item, index) => renderRoomCard(item, `clone-${index}`))}
+      </>
+    );
+  };
+
+  useEffect(() => {
+    if (isRoomCarousel && carouselRef.current) {
+      const container = carouselRef.current;
+
+      const autoScroll = setInterval(() => {
+        if (isHovered) return;
+
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        const currentScroll = container.scrollLeft;
+        
+        // If we're near the end (showing cloned items)
+        if (currentScroll >= maxScroll - 600) {
+          // Quickly jump back to the real items without animation
+          container.scrollTo({ left: 0, behavior: 'auto' });
+          // Then immediately start scrolling again
+          setTimeout(() => {
+            container.scrollBy({ left: 1, behavior: 'smooth' });
+          }, 50);
+        } else {
+          container.scrollBy({ left: 580, behavior: 'smooth' });
+        }
+      }, 3000);
+
+      return () => clearInterval(autoScroll);
+    }
+  }, [isRoomCarousel, isHovered]);
 
   const handleScroll = (direction) => {
     if (!isRoomCarousel) {
@@ -19,9 +99,19 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
         }
       });
     } else {
-      const container = document.querySelector('.row__posters');
-      const scrollAmount = direction === 'left' ? -200 : 200;
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const container = carouselRef.current;
+      if (!container) return;
+
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const scrollAmount = direction === 'left' ? -580 : 580;
+      
+      if (direction === 'right' && container.scrollLeft >= maxScroll - 20) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+      } else if (direction === 'left' && container.scrollLeft <= 20) {
+        container.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      } else {
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
     }
   };
 
@@ -69,34 +159,6 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
     setSelectedRoom(null);
   };
 
-  const renderRoomCard = (room) => {
-    return (
-      <div className="carousel-room-card" onClick={() => handleImageClick(room)}>
-        <div className="carousel-room-card__image-container">
-          <img 
-            src={room.image} 
-            alt={room.name} 
-            className="carousel-room-card__image"
-          />
-        </div>
-        <div className="carousel-room-card__content">
-          <h3 className="carousel-room-card__title">{room.name}</h3>
-          <div className="carousel-room-card__details">
-            <p>Floor: {room.floor}</p>
-            <p>Size: {room.size}m²</p>
-            <p>Room: 5</p>
-          </div>
-          <div className="carousel-room-card__bottom">
-            <div className="carousel-room-card__price">
-              {room.price} Birr/monthly
-            </div>
-            <button className="view-details-btn">View Details</button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className={`row ${!isRoomCarousel ? 'row--small' : ''}`}>
       <h2>{title}</h2>
@@ -117,20 +179,13 @@ const RoomCarousel = ({ title, images, rooms, isRoomCarousel }) => {
             </button>
           </div>
         )}
-        <div className={`row__posters ${!isRoomCarousel ? 'row__posters--small' : ''}`}>
-          {items.map((item, index) => (
-            isRoomCarousel ? (
-              renderRoomCard(item)
-            ) : (
-              <img
-                key={index}
-                src={item}
-                alt={`Room view ${index + 1}`}
-                className={getImageClass(index)}
-                onClick={() => handleImageClick(item)}
-              />
-            )
-          ))}
+        <div 
+          ref={isRoomCarousel ? carouselRef : null}
+          className={`row__posters ${!isRoomCarousel ? 'row__posters--small' : ''}`}
+          onMouseEnter={() => isRoomCarousel && setIsHovered(true)}
+          onMouseLeave={() => isRoomCarousel && setIsHovered(false)}
+        >
+          {renderCarouselContent()}
         </div>
       </div>
       {selectedRoom && (
